@@ -5,8 +5,10 @@ pipeline {
     stage('Hello') {
       steps {
         echo 'Hello World'
-        withAWSParameterStore(credentialsId: '', naming: 'basename', path: '/', recursive: true, regionName: 'us-east-1') {
-          sh 'env'
+        script {
+          withAWSParameterStore(credentialsId: '', naming: 'basename', path: '/', recursive: true, regionName: 'us-east-1') {
+            sh 'env'
+          }
         }
       }
     }
